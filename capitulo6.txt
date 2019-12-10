@@ -1,0 +1,63 @@
+Execute os requests a seguir com o Kibana (http://localhost:5601/app/kibana#/dev_tools/console?_g=()):
+
+PUT /indice_com_sinonimo
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 3,
+      "number_of_replicas": 0
+    },
+    "analysis": {
+      "filter": {
+        "filtro_de_sinonimos": {
+            "type": "synonym",
+            "synonyms": [
+                "esporte,futebol,society,futeba,pelada"
+            ]
+        }
+      },
+      "analyzer": {
+        "sinonimos": {
+          "tokenizer":  "standard",
+          "filter": [
+            "lowercase",
+            "filtro_de_sinonimos"
+          ]
+        }
+      }
+    }
+  }
+}
+
+DELETE indice_com_sinonimo_2
+
+PUT /indice_com_sinonimo_2
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 3,
+      "number_of_replicas": 0
+    },
+    "analysis": {
+      "filter": {
+        "filtro_de_sinonimos": {
+            "type": "synonym",
+            "synonyms": [
+    "futebol => futebol,society",
+    "society => society,futebol",
+    "esporte => esporte,futebol,society,volei,basquete"
+            ]
+        }
+      },
+      "analyzer": {
+        "sinonimos": {
+          "tokenizer":  "standard",
+          "filter": [
+            "lowercase",
+            "filtro_de_sinonimos"
+          ]
+        }
+      }
+    }
+  }
+}
