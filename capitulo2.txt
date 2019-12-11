@@ -2,6 +2,10 @@ Execute os requests a seguir com o Kibana (http://localhost:5601/app/kibana#/dev
 
 HEAD /catalogo/_doc/100
 
+OU
+
+curl -I "http://localhost:9200/catalogo/_doc/1" 
+
 GET /catalogo/_doc/1
 
 GET /catalogo/_doc/100
