@@ -2,7 +2,7 @@ Execute os requests a seguir com o Kibana (http://localhost:5601/app/kibana#/dev
 
 PUT /catalogo/_doc/1
 {
-  "nome": "Patrick von Steppat 2",
+  "nome": "Patrick von Steppat",
   "interesses": [
     "computação",
     "culinária",
@@ -12,7 +12,7 @@ PUT /catalogo/_doc/1
   "formação": "Gastronomia",
   "estado": "RJ",
   "país": "Brasil",
-  "nascimento": "1984-10-03"
+  "nascimento": "1984-10-03T12:00:00Z"
 }
 
 {
