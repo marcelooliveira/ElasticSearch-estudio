@@ -78,10 +78,60 @@ POST catalogo/_update/50
 
 GET catalogo/_doc/50
 
+#*****************************************
+# AULA 3
+#*****************************************
 
+GET catalogo/_search/?q=futebol
 
+GET catalogo/_search/?q=estado:SP
 
+GET catalogo/_search/?q=estado:futebol
 
+GET catalogo/_search/?q=futebol&size=10&from=10
+
+#*****************************************
+# AULA 4
+#*****************************************
+
+GET catalogo/_mapping
+
+PUT /catalogo/_doc/1
+{
+  "nome": "Patrick von Steppat",
+  "interesses": [
+    "computação",
+    "culinária",
+    "cinema"
+  ],
+  "cidade": "Rio de Janeiro",
+  "formação": "Gastronomia",
+  "estado": "RJ",
+  "país": "Brasil"
+}
+
+PUT /catalogo/_doc/1
+{
+  "nome": "Patrick von Steppat 2",
+  "interesses": [
+    "computação",
+    "culinária",
+    "cinema"
+  ],
+  "cidade": "Rio de Janeiro",
+  "formação": "Gastronomia",
+  "estado": "RJ",
+  "país": "Brasil",
+  "nascimento": "1984-10-03T12:00:00Z"
+}
+
+GET catalogo/_doc/1
+
+GET catalogo/_mapping
+
+#*****************************************
+# AULA 5
+#*****************************************
 
 
 
