@@ -1,5 +1,14 @@
 Execute os requests a seguir com o Kibana (http://localhost:5601/app/kibana#/dev_tools/console?_g=()):
 
+GET catalogo/_analyze
+{
+  "text": "Eu nasci há 10 mil (sim, isso mesmo, 10 mil) anos atrás"
+}
+
+
+
+
+
 PUT /catalogo_v2
 {
   "settings": {
