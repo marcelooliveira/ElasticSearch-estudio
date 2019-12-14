@@ -133,6 +133,32 @@ GET catalogo/_mapping
 # AULA 5
 #*****************************************
 
+GET catalogo/_search?q=musica
+
+GET catalogo/_search?q=música
+
+GET catalogo/_analyze
+{
+  "text": "Eu nasci há 10 mil (sim, isso mesmo, 10 mil) anos atrás"
+}
+
+GET catalogo/_analyze
+{
+  "analyzer": "simple", 
+  "text": "Eu nasci há 10 mil (sim, isso mesmo, 10 mil) anos atrás"
+}
+
+GET catalogo/_analyze
+{
+  "analyzer": "whitespace", 
+  "text": "Eu nasci há 10 mil (sim, isso mesmo, 10 mil) anos atrás"
+}
+
+
+
+
+
+
 
 
 
