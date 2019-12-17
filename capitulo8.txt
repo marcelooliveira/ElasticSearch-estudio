@@ -48,23 +48,23 @@ PUT /pessoas
         "type": "text",
         "fields": {
           "original": {
-            "type": "text",
-            "index": false
+            "type": "keyword",
+            "index": true
           }
         },
         "index": true,
         "analyzer": "portuguese"
       },
       "estado": {
-        "type": "text",
-        "index": false
+		"type": "keyword",
+		"index": true
       },
       "formação": {
         "type": "text",
         "fields": {
           "original": {
-            "type": "text",
-            "index": false
+			"type": "keyword",
+			"index": true
           }
         },
         "index": true,
@@ -80,8 +80,8 @@ PUT /pessoas
         "type": "text",
         "fields": {
           "original": {
-            "type": "text",
-            "index": false
+			"type": "keyword",
+			"index": true
           }
         },
         "index": true,
@@ -91,8 +91,8 @@ PUT /pessoas
         "type": "text",
         "fields": {
           "original": {
-            "type": "text",
-            "index": false
+			"type": "keyword",
+			"index": true
           }
         },
         "index": true,
