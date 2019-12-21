@@ -2820,10 +2820,6 @@ POST /pessoas/_bulk
 # AULA 9
 #*****************************************
 
-# Trazer todos os registros
-
-GET pessoas/_search
-
 GET pessoas/_search
 {
   "query": {
@@ -2831,100 +2827,144 @@ GET pessoas/_search
   }
 }
 
-# Correspondência exata (termo não-analisado)
+GET pessoas/_search
+{
+  "query": {
+    "exists": {
+      "field": "cep"
+    }
+  }
+}
+
 
 GET pessoas/_search
 {
   "query": {
     "term": {
-      "estado": "BA"
+      "estado": {
+        "value": "BA"
+      }
     }
   }
 }
 
-# Selecionando algumas colunas (atributos)
+GET pessoas/_search
+{
+  "_source": ["nome", "cidade", "formação"], 
+  "query": {
+    "term": { "estado": "BA" }
+  }
+}
 
 GET pessoas/_search
 {
-  "_source": ["nome","cidade","formação"], 
+  "_source": ["nome", "cidade", "formação"], 
   "query": {
-    "term": {
-      "estado": "BA"
+    "bool": {
+      "must": [
+        {"term": { "estado": "BA" }}
+      ],
+      "should": [
+        {"term": { "formação.original": "Física" }}
+      ]
     }
   }
 }
 
-# Combinando critérios
 
 GET pessoas/_search
 {
-  "_source": ["nome","estado","formação"], 
+  "_source": ["nome", "cidade", "formação"], 
   "query": {
     "bool": {
       "must": [
-          { "term": { "estado": "BA" } },
-          { "term": {"formação": "fisica"} }
-        ]
-      }
+        {"term": { "estado": "BA" }}
+      ],
+      "must_not": [
+        {"term": { "formação.original": "Física" }}
+      ]
+    }
   }
 }
 
-# Correspondência não-exata
-
 GET pessoas/_search
 {
-  "_source": ["nome","estado","formação"], 
+  "_source": ["nome", "cidade", "formação"], 
   "query": {
     "bool": {
       "must": [
-          { "term": { "estado": "BA" } },
-          { "match": {"formação": "fisica"} }
-        ]
+        {"term": { "estado": "BA" }}
+      ],
+      "must_not": [
+        {"term": { "formação.original": "Física" }}
+      ],
+      "filter": {
+        "range": {
+          "nome.original": {
+            "gte": "A",
+            "lte": "Czzzzzz"
+          }
+        }
       }
+    }
   }
 }
 
-# Ordenando resultados
-
 GET pessoas/_search
 {
-  "_source": ["cidade,nome","formação"], 
+  "_source": ["nome", "cidade", "formação"], 
   "query": {
     "bool": {
       "must": [
-          { "term": { "estado": "BA" } },
-          { "match": {"formação": "fisica"} }
-        ]
-      }
+        {"term": { "estado": "BA" }},
+        {"match": {"formação": "fisica" }}
+      ]
+    }
+  }
+}
+
+
+GET pessoas/_search
+{
+  "_source": ["nome", "cidade", "formação"], 
+  "query": {
+    "bool": {
+      "must": [
+        {"term": { "estado": "BA" }},
+        {"match": {"formação": "fisica" }}
+      ]
+    }
   },
-"sort": [
-  {
-    "cidade.original": {
-      "order": "asc"
-    },
-    "nome.original": {
-      "order": "desc"
+  "sort": [
+    {
+      "cidade.original": {
+        "order": "asc"
+      },
+      "nome.original": {
+        "order": "desc"
+      }
     }
-  }
-]
+  ]
 }
-
-# Agregações (count, max, min, etc.)
 
 GET pessoas/_search
 {
-  "_source": ["nome","estado","formação"], 
   "query": {
     "match": {
       "formação": "fisica"
-    }          
+    }
   },
   "aggs": {
-    "pessoas por estado": {
+    "pessoas formadas em física por estado": {
       "terms": {
         "field": "estado"
       }
     }
   }
 }
+
+
+
+
+
 
