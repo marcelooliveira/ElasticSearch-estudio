@@ -2816,4 +2816,115 @@ POST /pessoas/_bulk
 {"nome": "Yamila Guadalupe Toro Fernandez", "cidade": "Marcilio Dias", "formação": "Matemática", "estado": "SC", "país": "Brasil", "interesses": ["computação","artes","pintura","teatro"] }
 
 
+#*****************************************
+# AULA 9
+#*****************************************
+
+# Trazer todos os registros
+
+GET pessoas/_search
+
+GET pessoas/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+# Correspondência exata (termo não-analisado)
+
+GET pessoas/_search
+{
+  "query": {
+    "term": {
+      "estado": "BA"
+    }
+  }
+}
+
+# Selecionando algumas colunas (atributos)
+
+GET pessoas/_search
+{
+  "_source": ["nome","cidade","formação"], 
+  "query": {
+    "term": {
+      "estado": "BA"
+    }
+  }
+}
+
+# Combinando critérios
+
+GET pessoas/_search
+{
+  "_source": ["nome","estado","formação"], 
+  "query": {
+    "bool": {
+      "must": [
+          { "term": { "estado": "BA" } },
+          { "term": {"formação": "fisica"} }
+        ]
+      }
+  }
+}
+
+# Correspondência não-exata
+
+GET pessoas/_search
+{
+  "_source": ["nome","estado","formação"], 
+  "query": {
+    "bool": {
+      "must": [
+          { "term": { "estado": "BA" } },
+          { "match": {"formação": "fisica"} }
+        ]
+      }
+  }
+}
+
+# Ordenando resultados
+
+GET pessoas/_search
+{
+  "_source": ["cidade,nome","formação"], 
+  "query": {
+    "bool": {
+      "must": [
+          { "term": { "estado": "BA" } },
+          { "match": {"formação": "fisica"} }
+        ]
+      }
+  },
+"sort": [
+  {
+    "cidade.original": {
+      "order": "asc"
+    },
+    "nome.original": {
+      "order": "desc"
+    }
+  }
+]
+}
+
+# Agregações (count, max, min, etc.)
+
+GET pessoas/_search
+{
+  "_source": ["nome","estado","formação"], 
+  "query": {
+    "match": {
+      "formação": "fisica"
+    }          
+  },
+  "aggs": {
+    "pessoas por estado": {
+      "terms": {
+        "field": "estado"
+      }
+    }
+  }
+}
 
