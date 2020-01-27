@@ -1,4 +1,13 @@
-Execute os requests a seguir com o Kibana (http://localhost:5601/app/kibana#/dev_tools/console?_g=()):
+#*****************************************
+# AULA 1
+#*****************************************
+
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
 
 POST catalogo/_doc/
 {
@@ -10,6 +19,8 @@ POST catalogo/_doc/
     "país": "Brasil"
 }
 
+GET catalogo/_count
+
 POST catalogo/_doc/1
 {
     "nome": "João Silva",
@@ -20,39 +31,9 @@ POST catalogo/_doc/1
     "país": "Brasil"
 }
 
-POST /catalogo/_doc/2
-{
-    "nome": "Maria Silva",
-    "interesses": ["pintura", "literatura", "teatro"],
-    "cidade": "Diamantina",
-    "formação": "Artes Plásticas",
-    "estado": "MG",
-    "país": "Brasil"
-}
+GET catalogo/_doc/1
 
-POST /catalogo/_doc/3
-{
-    "nome": "Richard Edward",
-    "interesses": ["matemática", "física", "música"],
-    "cidade": "Boston",
-    "formação": "Física",
-    "estado": "MA",
-    "país": "Estados Unidos"
-}
+GET catalogo/_search
 
-POST /catalogo/_doc/4
-{
-    "nome": "Patrick von Steppat",
-    "interesses": ["computação", "culinária", "cinema"],
-    "cidade": "Rio de Janeiro",
-    "formação": "Gastronomia",
-    "estado": "RJ",
-    "país": "Brasil"
-}
+GET catalogo/_search/?q=futebol
 
-PUT /catalogo/_settings
-{
-    "index": {
-        "number_of_replicas": 0
-    }
-}

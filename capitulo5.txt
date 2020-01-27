@@ -1,13 +1,33 @@
-Execute os requests a seguir com o Kibana (http://localhost:5601/app/kibana#/dev_tools/console?_g=()):
+#*****************************************
+# AULA 5
+#*****************************************
+
+GET catalogo/_search?q=musica
+
+GET catalogo/_search?q=música
 
 GET catalogo/_analyze
 {
   "text": "Eu nasci há 10 mil (sim, isso mesmo, 10 mil) anos atrás"
 }
 
+GET catalogo/_analyze
+{
+  "analyzer": "simple", 
+  "text": "Eu nasci há 10 mil (sim, isso mesmo, 10 mil) anos atrás"
+}
 
+GET catalogo/_analyze
+{
+  "analyzer": "whitespace", 
+  "text": "Eu nasci há 10 mil (sim, isso mesmo, 10 mil) anos atrás"
+}
 
-
+GET catalogo/_analyze
+{
+  "analyzer": "portuguese", 
+  "text": "Eu nasci há 10 mil (sim, isso mesmo, 10 mil) anos atrás"
+}
 
 PUT /catalogo_v2
 {
@@ -61,32 +81,7 @@ POST /catalogo_v2/_doc/1
     "país": "Brasil"
 }
 
-POST /catalogo_v2/_doc/2
-{
-    "nome": "Maria Silva",
-    "interesses": ["pintura", "literatura", "teatro"],
-    "cidade": "Diamantina",
-    "formação": "Artes Plásticas",
-    "estado": "MG",
-    "país": "Brasil"
-}
+GET catalogo/_search?q=musica
 
-POST /catalogo_v2/_doc/3
-{
-    "nome": "Richard Edward",
-    "interesses": ["matemática", "física", "música"],
-    "cidade": "Boston",
-    "formação": "Física",
-    "estado": "MA",
-    "país": "Estados Unidos"
-}
+GET catalogo_v2/_search?q=MÚSICAS
 
-POST /catalogo_v2/_doc/4
-{
-    "nome": "Patrick von Steppat",
-    "interesses": ["computação", "culinária", "cinema"],
-    "cidade": "Rio de Janeiro",
-    "formação": "Gastronomia",
-    "estado": "RJ",
-    "país": "Brasil"
-}

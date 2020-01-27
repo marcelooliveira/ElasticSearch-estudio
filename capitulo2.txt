@@ -1,28 +1,14 @@
-Execute os requests a seguir com o Kibana (http://localhost:5601/app/kibana#/dev_tools/console?_g=()):
+#*****************************************
+# AULA 2
+#*****************************************
 
-HEAD /catalogo/_doc/100
+HEAD catalogo/_doc/1
 
-OU
+HEAD catalogo/_doc/100
 
-curl -I "http://localhost:9200/catalogo/_doc/1" 
+GET catalogo/_doc/100
 
-GET /catalogo/_doc/1
-
-GET /catalogo/_doc/100
-
-PUT /catalogo/_doc/50
-{
-    "nome": "Marcelo Oliveira",
-    "interesses": [
-        "cinema",
-        "música",
-        "programação"
-    ],
-    "cidade": "São Paulo",
-    "formação": "Tecnologia da Informação",
-    "estado": "SP",
-    "país": "Brasil"
-}
+PUT catalogo/_doc/50
 
 PUT /catalogo/_doc/50
 {
@@ -38,8 +24,18 @@ PUT /catalogo/_doc/50
     "país": "Brasil"
 }
 
-GET /catalogo/_doc/50
+GET catalogo/_doc/50
 
 GET catalogo/_doc/1
 
+DELETE catalogo/_doc/1
+
+POST catalogo/_update/50
+{
+  "doc": {
+    "nome": "Marcelo R. Oliveira"
+  }
+}
+
+GET catalogo/_doc/50
 

@@ -1,4 +1,12 @@
-Execute os requests a seguir com o Kibana (http://localhost:5601/app/kibana#/dev_tools/console?_g=()):
+#*****************************************
+# AULA 7
+#*****************************************
+
+GET indice_com_sinonimo_2/_analyze
+{
+  "analyzer": "portuguese",
+  "text": "esporte"
+}
 
 PUT /catalogo_v3
 {
@@ -65,6 +73,12 @@ PUT /catalogo_v3
       },
       "nome": {
         "type": "text",
+        "fields": {
+          "original": {
+            "type": "keyword",
+            "index": true
+          }
+        }, 
         "index": true,
         "analyzer": "portuguese"
       },
@@ -77,73 +91,3 @@ PUT /catalogo_v3
   }
 }
 
-
-POST /catalogo_v3/_doc/1
-{
-    "nome": "João Silva",
-    "interesses": ["futebol", "música", "literatura"],
-    "cidade": "São Paulo",
-    "formação": "Letras",
-    "estado": "SP",
-    "país": "Brasil"
-}
-
-POST /catalogo_v3/_doc/2
-{
-    "nome": "Maria Silva",
-    "interesses": ["pintura", "literatura", "teatro"],
-    "cidade": "Diamantina",
-    "formação": "Artes Plásticas",
-    "estado": "MG",
-    "país": "Brasil"
-}
-
-POST /catalogo_v3/_doc/3
-{
-    "nome": "Richard Edward",
-    "interesses": ["matemática", "física", "música"],
-    "cidade": "Boston",
-    "formação": "Física",
-    "estado": "MA",
-    "país": "Estados Unidos"
-}
-
-POST /catalogo_v3/_doc/4
-{
-    "nome": "Patrick von Steppat",
-    "interesses": ["computação", "culinária", "cinema"],
-    "cidade": "Rio de Janeiro",
-    "formação": "Gastronomia",
-    "estado": "RJ",
-    "país": "Brasil"
-}
-
-POST /catalogo_v3/_doc/5
-{
-  "nome": "Paulo Eduardo de Azevedo Silveira",
-  "interesses": ["computação", "literatura"],
-  "cidade": "São Paulo",
-  "formação": "Computação",
-  "estado": "SP",
-  "país": "Brasil"
-}
-
-POST /catalogo_v3/_doc/6
-{
-  "nome": "Michael Jordan",
-  "interesses": ["basquete"],
-  "cidade": "Chicago",
-  "formação": "Artes",
-  "estado": "IL",
-  "país": "Estados Unidos"
-}
-
-POST /catalogo_v3/_doc/7
-{
-  "nome": "Marcelo Negrão",
-  "interesses": ["volei"],
-  "cidade": "São Paulo",
-  "formação": "Adminstração",
-  "estado": "SP",
-  "país": "Brasil"
-}

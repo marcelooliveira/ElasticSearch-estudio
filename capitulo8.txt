@@ -1,4 +1,6 @@
-Execute os requests a seguir com o Kibana (http://localhost:5601/app/kibana#/dev_tools/console?_g=()):
+#*****************************************
+# AULA 8
+#*****************************************
 
 PUT /pessoas
 {
@@ -101,6 +103,13 @@ PUT /pessoas
     }
   }
 }
+
+
+
+
+
+
+
 
 POST /pessoas/_bulk
 {"index": {}}
@@ -1219,11 +1228,7 @@ POST /pessoas/_bulk
 {"nome": "Kamilla Souza Rodrigues C Bandeira", "cidade": "Firmino Alves", "formação": "Artes Cênicas", "estado": "BA", "país": "Brasil", "interesses": [] }
 
 
-
-
-#######################################################################################################################
-
-
+GET pessoas/_count
 
 
 POST /pessoas/_bulk
@@ -2345,3 +2350,4 @@ POST /pessoas/_bulk
 {"nome": "Yamara Lopes", "cidade": "Algodoes", "formação": "Matemática", "estado": "CE", "país": "Brasil", "interesses": ["pintura"] }
 {"index": {}}
 {"nome": "Yamila Guadalupe Toro Fernandez", "cidade": "Marcilio Dias", "formação": "Matemática", "estado": "SC", "país": "Brasil", "interesses": ["computação","artes","pintura","teatro"] }
+
